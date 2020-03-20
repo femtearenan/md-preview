@@ -9,16 +9,27 @@ function App() {
   return (
     <div className="App">
       <header className="Header">
-        <h1>Markdown Live Editor</h1>
+        <h1>MDLE</h1>
+        <div>Run</div>
+        <div>Test</div>
+        <div>Indent</div>
+        <div>Blocks Menu</div>
+        <div>Search Menu</div>
+        <div>Run Other</div>
+        <div>Edit Other</div>
+        <div>Insert</div>
+        <div>Fold/Unfold</div>
+        <div>Line Insert</div>
+        <div id="version">Version 0.1</div>
       </header>
-      <section>
+      <section id="editor">
         <h2>Edit</h2>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <Editor />
       </section>
-      <section>
+      <section id="preview">
         <h2>Live preview</h2>
         <Preview/>
       </section>

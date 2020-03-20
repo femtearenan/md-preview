@@ -15,6 +15,7 @@ class Editor extends React.Component {
     render() {
         return (
             <div>
+                <p>It is time to edit what you want.</p>
                 <textarea defaultValue={this.props.basicReducer.input}></textarea>
             </div>
         );
