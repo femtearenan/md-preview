@@ -1,21 +1,19 @@
 import React from "react";
 import { connect } from 'react-redux';
 
-class Editor extends React.Component {
+class Preview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         };
     }
 
-    updateInput = input => {
-        this.setState({ input });
-    }
-
     render() {
+        console.log("PROPS in Preview")
+        console.log(this.props)
         return (
             <div>
-                <textarea defaultValue={this.props.basicReducer.input}></textarea>
+                <pre>{this.props.basicReducer.input}</pre>
             </div>
         );
     }
@@ -28,4 +26,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(Editor);
+export default connect(mapStateToProps)(Preview);

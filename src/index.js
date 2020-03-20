@@ -4,13 +4,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+import store from './redux/store';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-    // <Provider store={store} >
+    <Provider store={store} >
         <App />
-    // </Provider>
+    </Provider>
 , rootElement
 );
 
