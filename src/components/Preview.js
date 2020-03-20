@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
+import marked, { Renderer } from 'marked'
+import DOMPurify from 'dompurify';
 
 class Preview extends React.Component {
     constructor(props) {
@@ -8,13 +10,17 @@ class Preview extends React.Component {
         };
     }
 
+    interpretMarkdown() {
+        let output = DOMPurify.sanitize(marked(this.props.basicReducer.input));
+        return { __html: output };
+    }
+
     render() {
+        
         console.log("PROPS in Preview")
         console.log(this.props)
         return (
-            <div>
-                <pre>{this.props.basicReducer.input}</pre>
-            </div>
+            <div dangerouslySetInnerHTML={this.interpretMarkdown()} />
         );
     }
 }
