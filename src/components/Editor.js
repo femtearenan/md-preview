@@ -1,22 +1,25 @@
 import React from "react";
 import { connect } from 'react-redux';
 
+import { updateMd } from '../redux/actions';
+
+
 class Editor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+
+        this.updateInput = this.updateInput.bind(this);
     }
 
-    updateInput = input => {
-        this.setState({ input });
+    updateInput = event => {
+        // let scrollHeight = event.target.scrollHeight
+        return this.props.updateMd(event);
     }
 
     render() {
         return (
-            <div id="editable" className="no-show">
-                <p>It is time to edit what you want.</p>
-                <textarea defaultValue={this.props.basicReducer.input}></textarea>
+            <div id="editable" className={this.props.basicReducer.classEdit}> 
+                <textarea defaultValue={this.props.basicReducer.input} onKeyDown={this.updateInput} className={this.props.basicReducer.display}></textarea>
             </div>
         );
     }
@@ -28,5 +31,9 @@ const mapStateToProps = state => {
     };
 }
 
+const mapDispatchToProps = dispatch => ({
+    updateMd: (event) => dispatch(updateMd(event))
+});
 
-export default connect(mapStateToProps)(Editor);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

@@ -17,8 +17,6 @@ class Preview extends React.Component {
 
     render() {
         
-        console.log("PROPS in Preview")
-        console.log(this.props)
         return (
             <div dangerouslySetInnerHTML={this.interpretMarkdown()} />
         );

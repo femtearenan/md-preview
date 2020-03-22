@@ -1,9 +1,9 @@
 import { UPDATE, INITIAL_CLICK } from "./actionTypes";
 
-export const updateMd = content => ({
+export const updateMd = event => ({
     type: UPDATE,
     payload: {
-        content
+        event
     }
 });
 

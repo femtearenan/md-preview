@@ -52,7 +52,8 @@ const initialState = {
     input: placeholder,
     initial: true,
     classPresentation: "display",
-    classEdit: "no-show"
+    classEdit: "no-show",
+    display: "normal-height"
 };
 
 function updatePreview(state = initialState, action) {
@@ -65,7 +66,7 @@ function updatePreview(state = initialState, action) {
             });
         case UPDATE:
             return Object.assign({}, state, {
-                content: action.payload
+                content: action.payload,
             });
         default:
             return state;
