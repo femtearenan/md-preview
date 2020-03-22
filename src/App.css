@@ -11,12 +11,13 @@
 :root {
   --main-color: #002186;
   --secondary-color: #00f1d8;
+  --rust-color: #db4300;
 }
 
 .App {
   font-family: 'Topaz';
-  cursor: url('./cursor.png'), auto;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -66,6 +67,11 @@ header {
   grid-template-rows: repeat(3, 1fr);
   gap: 3px;
   border: 3px solid #d3d3d3 ;
+}
+
+header a:hover {
+  background-color: white;
+  color: var(--rust-color);
 }
 
 #header-title {
