@@ -1,13 +1,21 @@
 import React from "react";
+import { connect } from 'react-redux';
+
+import { initialAction } from '../redux/actions';
 
 class Intro extends React.Component {
     constructor(props) {
         super(props);
+        this.toggleDisplay = this.toggleDisplay.bind(this);
+    }
+
+    toggleDisplay() {
+        this.props.initialAction(this.props);
     }
 
     render() {
         return (
-            <div id="intro">
+            <div id="intro" className={this.props.basicReducer.classPresentation} onClick={this.toggleDisplay} >
                 <h2>Markdown Live Editor</h2>
                 <p>for React Redux</p>
                 <p>by Anders Björkland</p>
@@ -17,5 +25,14 @@ class Intro extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        ...state
+    };
+}
 
-export default Intro;
+const mapDispatchToProps = dispatch => ({
+    initialAction: () => dispatch(initialAction())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Intro);

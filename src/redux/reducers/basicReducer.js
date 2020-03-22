@@ -1,4 +1,4 @@
-import { UPDATE } from '../actionTypes';
+import { UPDATE, INITIAL_CLICK } from '../actionTypes';
 import { updateMd } from '../actions';
 
 const placeholder = 
@@ -49,11 +49,20 @@ And here. | Okay. | I think we get it.
 ![React Logo w/ Text](https://goo.gl/Umyytc)
 `;
 const initialState = {
-    input: placeholder
+    input: placeholder,
+    initial: true,
+    classPresentation: "display",
+    classEdit: "no-show"
 };
 
 function updatePreview(state = initialState, action) {
     switch (action.type) {
+        case INITIAL_CLICK: 
+            return Object.assign({}, state, {
+              initial: false,
+              classPresentation: "no-show",
+              classEdit: "display"
+            });
         case UPDATE:
             return Object.assign({}, state, {
                 content: action.payload
