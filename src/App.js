@@ -15,18 +15,39 @@ class App extends Component {
     this.fullscreen = this.fullscreen.bind(this);
     this.splitHeight = this.splitHeight.bind(this);
     this.splitVertical = this.splitVertical.bind(this);
+    this.menuItems =[
+      'fullscreen',
+      'split-h',
+      'split-v'
+    ];
   }
 
-  fullscreen() {
+  fullscreen(event) {
+    this.updateActiveMenuItem(event);
     this.props.fullscreen();
   }
 
-  splitHeight() {
-    this.props.splitHeight();
+  splitHeight(event) {
+    this.updateActiveMenuItem(event);
+    this.props.splitHeight(event);
   }
 
-  splitVertical() {
+  splitVertical(event) {
+    this.updateActiveMenuItem(event);
     this.props.splitVertical();
+  }
+
+  updateActiveMenuItem(event) {
+    let elementId = event.currentTarget.id;
+    let searchElement = null;
+    this.menuItems.forEach(element => {
+      searchElement = document.getElementById(element);
+      if (searchElement.id !== elementId) {
+        searchElement.className = '';
+      } else {
+        searchElement.className = 'active';
+      }
+    });
   }
   
   render() {
@@ -46,9 +67,9 @@ class App extends Component {
             </g>
           </svg>
           </div>
-          <div><p onClick={this.fullscreen}>Fullscreen</p></div>
-          <div><p onClick={this.splitHeight}>Split H</p></div>
-          <div><p onClick={this.splitVertical}>Split V</p></div>
+          <div><p id={this.menuItems[0]} onClick={this.fullscreen}>Fullscreen</p></div>
+          <div><p id={this.menuItems[1]} onClick={this.splitHeight}>Split H</p></div>
+          <div><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
           <div><a href="#">Blocks Menu</a></div>
           <div><a href="#">Search Menu</a></div>
           <div><a href="#">Run Other</a></div>
@@ -80,7 +101,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fullscreen: () => dispatch(fullscreen()),
-  splitHeight: () => dispatch(splitHeight()),
+  splitHeight: event => dispatch(splitHeight(event)),
   splitVertical: () => dispatch(splitVertical())
 });
 

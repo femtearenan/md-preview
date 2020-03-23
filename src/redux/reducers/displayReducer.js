@@ -13,6 +13,9 @@ function updateDisplay(state = initialState, action) {
             display: "normal-height"
           })
         case SPLIT_HEIGHT:
+          let element = action.payload;
+          console.log("Element:");
+          console.log(element);
           return Object.assign({}, state, {
             display: "split-height"
           })

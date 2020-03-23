@@ -11,8 +11,11 @@ export const initialAction = () => ({
     type: INITIAL_CLICK
 });
 
-export const splitHeight = () => ({
-    type: SPLIT_HEIGHT
+export const splitHeight = event => ({
+    type: SPLIT_HEIGHT,
+    payload: {
+        event
+    }
 })
 
 export const splitVertical = () => ({

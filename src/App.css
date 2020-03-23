@@ -71,11 +71,6 @@ header {
   border: 3px solid #d3d3d3 ;
 }
 
-header a:hover, header p:hover {
-  background-color: white;
-  color: var(--rust-color);
-}
-
 #header-title {
   font-family: 'MicroKnight';
   grid-area: 1 / 1 / 3 / 2;
@@ -103,6 +98,16 @@ header a, header p {
   background: #db4300;  
   text-align: center;
   font-size: 1.5rem;
+}
+
+header a:hover, header p:hover, header p.active:hover {
+  background-color: white;
+  color: var(--rust-color);
+}
+
+header p.active {
+  background-color: #ddd;
+  color: var(--rust-color);
 }
 
 header svg {
@@ -199,4 +204,8 @@ textarea {
 
 .split-height {
   min-height: 40vh;
+}
+
+.split-vertical {
+
 }
