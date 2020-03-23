@@ -53,7 +53,6 @@ const initialState = {
     initial: true,
     classPresentation: "display",
     classEdit: "no-show",
-    display: "normal-height"
 };
 
 function updatePreview(state = initialState, action) {
