@@ -4,4 +4,7 @@ export const SPLIT_HEIGHT ="SPLIT_HEIGHT";
 export const SPLIT_VERTICAL ="SPLIT_VERTICAL";
 export const FULLSCREEN ="FULLSCREEN";
 export const COPY ="COPY";
+export const DOWNLOAD ="DOWNLOAD";
 export const DISMISS ="DISMISS";
+export const THEME_SWITCH ="THEME_SWITCH";
+export const ABOUT_SWITCH ="ABOUT_SWITCH";

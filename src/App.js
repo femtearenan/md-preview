@@ -5,7 +5,7 @@ import Presentation from './components/Presentation';
 import Preview from './components/Preview';
 import './App.css';
 
-import { initialAction, fullscreen, splitHeight, splitVertical, copy, dismiss } from './redux/actions';
+import { initialAction, fullscreen, splitHeight, splitVertical, copy, download, dismiss, themeSwitch, aboutSwitch } from './redux/actions';
 
 import { connect } from 'react-redux';
 
@@ -17,11 +17,15 @@ class App extends Component {
     this.splitVertical = this.splitVertical.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.copy = this.copy.bind(this);
+    this.downloadMd = this.downloadMd.bind(this);
     this.dismiss = this.dismiss.bind(this);
+    this.themeSwitch = this.themeSwitch.bind(this);
+    this.aboutSwitch = this.aboutSwitch.bind(this);
     this.menuItems =[
       'fullscreen',
       'split-h',
-      'split-v'
+      'split-v',
+      'about-l'
     ];
   }
 
@@ -62,11 +66,14 @@ class App extends Component {
     element.select();
     element.setSelectionRange(0, 99999);
     document.execCommand("copy");
-    // alert("Copied the text");
     element.setSelectionRange(0,0);
     this.props.copy();
-    // let content = this.props.basicReducer.input;
     
+  }
+
+  downloadMd() {
+    downloadFile(this.props.basicReducer.input, "text.md");
+    this.props.download();
   }
 
   dismiss() {
@@ -74,10 +81,29 @@ class App extends Component {
       this.props.dismiss();
     }
   }
+
+  themeSwitch() {
+    this.props.themeSwitch();
+  }
+
+  aboutSwitch(event) {
+    let elementId = event.currentTarget.id;
+    let element = document.getElementById(elementId);
+    let displayWrapper = document.getElementById("display-wrapper");
+    if (this.props.displayReducer.about === "no-show") {
+      element.className = 'active';
+      displayWrapper.classList.add('no-show');
+    } else {
+      element.className = '';
+      displayWrapper.classList.remove('no-show');
+
+    }
+    this.props.aboutSwitch();
+  }
   
   render() {
     return (
-      <div className="App">
+      <div className={"App " + this.props.displayReducer.theme}>
         <header className="Header">
           <div id="header-title">
           <svg xmlns="http://www.w3.org/2000/svg" width="424.312" height="189.125" viewBox="0 0 424.312 189.125">
@@ -96,34 +122,53 @@ class App extends Component {
           <div><p id={this.menuItems[1]} onClick={this.splitHeight}>Split H</p></div>
           <div><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
           <div><p onClick={this.copy}>Copy md</p></div>
-          <div><a href="#">Search Menu</a></div>
+          <div><p onClick={this.downloadMd}>Download md</p></div>
           <div><a href="#editorAnchor">Editor</a></div>
           <div><a href="#previewAnchor">Preview</a></div>
-          <div><a href="#">Insert</a></div>
-          <div><a href="#">Fold/Unfold</a></div>
-          <div><a href="#">Line Insert</a></div>
+          <div><p onClick={this.themeSwitch}>{this.props.displayReducer.applyTheme}</p></div>
+          <div><a href="https://github.com/femtearenan/md-preview" target="_blank" rel="noopener noreferrer">Github</a></div>
+          <div><p id={this.menuItems[3]} onClick={this.aboutSwitch}>About</p></div>
           <div id="message" onClick={this.dismiss}><p>{this.props.displayReducer.message}</p></div>
         </header>
-        {/* <div id="message-dialog" class={this.props.displayReducer.dialog}>
-          <p>{this.props.displayReducer.message}</p>
-          <button>Ok</button>
-        </div> */}
+        <div id="about" className={this.props.displayReducer.about}>
+          <h2>About MDLE</h2>
+          <p>MDLE (Markdown Live Editor) is a retro-inspired markdown editor/previewer. A source of inspiration has been AMOS for Amiga. It was an editor for writing a BASIC derivate on (most commonly) the Amiga 500.</p>
+          <p>The creator of MDLE is me, Anders Björkland. You can read more about me and my projects over at <a href="https://anders.femtearenan.se" target="_blank" rel="noopener noreferrer">anders.femtearenan.se</a> or <a href="https://twitter.com/abjorkland" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.</p>
+        </div>
         <div id="display-wrapper" className={this.props.displayReducer.wrapper}>
           <section id="editor" className={this.props.displayReducer.display} onClick={this.toggleDisplay}>
             <div className="anchor" id="editorAnchor"></div>
             <Intro />
             <Presentation />
             <Editor />
-            {/* <div class="identifier" id="editor-identifier">Editor</div> */}
           </section>
           <section id="preview" className={this.props.displayReducer.display}>
             <div className="anchor" id="previewAnchor"></div>
             <Preview/>
-            {/* <div class="identifier" id="preview-identifier">Preview</div> */}
           </section>
         </div>
       </div>
     );
+  }
+}
+
+// A function to download data from browser. 
+// Credit to user Kanchu https://stackoverflow.com/questions/13405129/javascript-create-and-save-file [2020-03-24]
+function downloadFile(data, filename) {
+  var file = new Blob([data], {type: "text/plain"});
+  if (window.navigator.msSaveOrOpenBlob) // IE10+
+      window.navigator.msSaveOrOpenBlob(file, filename);
+  else { // Others
+      var a = document.createElement("a"),
+              url = URL.createObjectURL(file);
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() {
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);  
+      }, 0); 
   }
 }
 
@@ -137,7 +182,10 @@ const mapDispatchToProps = dispatch => ({
   splitHeight: event => dispatch(splitHeight(event)),
   splitVertical: () => dispatch(splitVertical()),
   copy: () => dispatch(copy()),
-  dismiss: () => dispatch(dismiss())
+  download: () => dispatch(download()),
+  dismiss: () => dispatch(dismiss()),
+  themeSwitch: () => dispatch(themeSwitch()),
+  aboutSwitch: () => dispatch(aboutSwitch())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

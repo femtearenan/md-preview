@@ -1,4 +1,4 @@
-import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, COPY, DISMISS } from "./actionTypes";
+import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, COPY, DISMISS, DOWNLOAD, THEME_SWITCH, ABOUT_SWITCH } from "./actionTypes";
 
 export const updateMd = event => {
     let content = event.target.value;
@@ -35,4 +35,16 @@ export const dismiss = () => ({
 
 export const copy = () => ({
     type: COPY
+})
+
+export const download = () => ({
+    type: DOWNLOAD
+})
+
+export const themeSwitch = () => ({
+    type: THEME_SWITCH
+})
+
+export const aboutSwitch = () => ({
+    type: ABOUT_SWITCH
 })
