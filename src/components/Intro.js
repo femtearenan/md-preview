@@ -1,16 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux';
 
-import { initialAction } from '../redux/actions';
-
 class Intro extends React.Component {
     constructor(props) {
         super(props);
-        this.toggleDisplay = this.toggleDisplay.bind(this);
-    }
-
-    toggleDisplay() {
-        this.props.initialAction(this.props);
     }
 
     render() {
@@ -31,8 +24,4 @@ const mapStateToProps = state => {
     };
 }
 
-const mapDispatchToProps = dispatch => ({
-    initialAction: () => dispatch(initialAction())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Intro);
+export default connect(mapStateToProps)(Intro);

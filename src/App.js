@@ -5,7 +5,7 @@ import Presentation from './components/Presentation';
 import Preview from './components/Preview';
 import './App.css';
 
-import { fullscreen, splitHeight, splitVertical } from './redux/actions';
+import { initialAction, fullscreen, splitHeight, splitVertical } from './redux/actions';
 
 import { connect } from 'react-redux';
 
@@ -15,12 +15,17 @@ class App extends Component {
     this.fullscreen = this.fullscreen.bind(this);
     this.splitHeight = this.splitHeight.bind(this);
     this.splitVertical = this.splitVertical.bind(this);
+    this.toggleDisplay = this.toggleDisplay.bind(this);
     this.menuItems =[
       'fullscreen',
       'split-h',
       'split-v'
     ];
   }
+
+  toggleDisplay() {
+    this.props.initialAction(this.props);
+}
 
   fullscreen(event) {
     this.updateActiveMenuItem(event);
@@ -72,20 +77,22 @@ class App extends Component {
           <div><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
           <div><a href="#">Blocks Menu</a></div>
           <div><a href="#">Search Menu</a></div>
-          <div><a href="#">Run Other</a></div>
-          <div><a href="#">Edit Other</a></div>
+          <div><a href="#editorAnchor">Editor</a></div>
+          <div><a href="#previewAnchor">Preview</a></div>
           <div><a href="#">Insert</a></div>
           <div><a href="#">Fold/Unfold</a></div>
           <div><a href="#">Line Insert</a></div>
           <div id="version"><a href="#">Version 0.1</a></div>
         </header>
         <div id="display-wrapper" className={this.props.displayReducer.wrapper}>
-          <section id="editor" className={this.props.displayReducer.display}>
+          <section id="editor" className={this.props.displayReducer.display} onClick={this.toggleDisplay}>
+            <div class="anchor" id="editorAnchor"></div>
             <Intro />
             <Presentation />
             <Editor />
           </section>
           <section id="preview">
+            <div class="anchor" id="previewAnchor"></div>
             <h2>Live preview</h2>
             <Preview/>
           </section>
@@ -100,6 +107,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  initialAction: () => dispatch(initialAction()),
   fullscreen: () => dispatch(fullscreen()),
   splitHeight: event => dispatch(splitHeight(event)),
   splitVertical: () => dispatch(splitVertical())

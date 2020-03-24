@@ -69,6 +69,7 @@ header {
   grid-template-rows: repeat(3, 1fr);
   gap: 3px;
   border: 3px solid #d3d3d3 ;
+  margin-bottom: 1.3rem;
 }
 
 #header-title {
@@ -81,6 +82,10 @@ header {
 }
 #editor {
   overflow: hidden;
+}
+
+#editable {
+  height: 100%;
 }
 
 header div {
@@ -130,11 +135,8 @@ header svg {
                   EDITOR
 *******************************************/
 #editor {
-  margin-top: 1.3rem;
-  /* padding: 1rem; */
   background-color: var(--main-color);
   color: var(--secondary-color);
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   font-size: 1.6rem;
@@ -168,15 +170,13 @@ header svg {
 textarea {
   display: block;
   width: 100%;
-  /* height: 100%; */
-  /* min-height: 100vh; */
+  height: 100%;
   background-color: var(--main-color);
   color: var(--secondary-color);
   font-size: 1.4rem;
   font-family: 'Topaz';
   border: none;
   outline: none;
-  /* overflow: hidden; */
 }
 
 
@@ -189,6 +189,8 @@ textarea {
   flex-direction: column;
   width: 100%;
   text-align: start;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .no-show {
@@ -206,6 +208,25 @@ textarea {
   min-height: 40vh;
 }
 
-.split-vertical {
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 80vh;
+}
 
+.normal-wrapper {
+  display: block;
+}
+
+.split-vertical-wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 80vh;
+}
+
+
+.anchor {
+  position: relative;
+  top: -18vh;
+  visibility: hidden;
 }
