@@ -65,7 +65,7 @@ function updatePreview(state = initialState, action) {
             });
         case UPDATE:
             return Object.assign({}, state, {
-                content: action.payload,
+                input: action.payload.content
             });
         default:
             return state;

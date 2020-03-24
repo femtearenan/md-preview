@@ -19,7 +19,7 @@ function updateDisplay(state = initialState, action) {
           console.log(element);
           return Object.assign({}, state, {
             // display: "split-height"
-            display: "",
+            display: "split-height",
             wrapper: "split-vertical-wrapper"
           })
         case SPLIT_VERTICAL:

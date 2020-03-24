@@ -18,7 +18,7 @@ class Preview extends React.Component {
     render() {
         
         return (
-            <div dangerouslySetInnerHTML={this.interpretMarkdown()} />
+            <div id="content" dangerouslySetInnerHTML={this.interpretMarkdown()} />
         );
     }
 }

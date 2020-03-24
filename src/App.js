@@ -90,11 +90,12 @@ class App extends Component {
             <Intro />
             <Presentation />
             <Editor />
+            {/* <div class="identifier" id="editor-identifier">Editor</div> */}
           </section>
-          <section id="preview">
+          <section id="preview" className={this.props.displayReducer.display}>
             <div class="anchor" id="previewAnchor"></div>
-            <h2>Live preview</h2>
             <Preview/>
+            {/* <div class="identifier" id="preview-identifier">Preview</div> */}
           </section>
         </div>
       </div>

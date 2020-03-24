@@ -12,14 +12,13 @@ class Editor extends React.Component {
     }
 
     updateInput = event => {
-        // let scrollHeight = event.target.scrollHeight
         return this.props.updateMd(event);
     }
 
     render() {
         return (
             <div id="editable" className={this.props.basicReducer.classEdit}> 
-                <textarea defaultValue={this.props.basicReducer.input} onKeyDown={this.updateInput} className={this.props.displayReducer.display}></textarea>
+                <textarea defaultValue={this.props.basicReducer.input} onKeyUp={this.updateInput} className={this.props.displayReducer.display}></textarea>
             </div>
         );
     }
