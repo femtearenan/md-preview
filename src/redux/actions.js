@@ -1,4 +1,4 @@
-import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL } from "./actionTypes";
+import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, COPY, DISMISS } from "./actionTypes";
 
 export const updateMd = event => {
     let content = event.target.value;
@@ -27,4 +27,12 @@ export const splitVertical = () => ({
 
 export const fullscreen = () => ({
     type: FULLSCREEN
+})
+
+export const dismiss = () => ({
+    type: DISMISS
+})
+
+export const copy = () => ({
+    type: COPY
 })
