@@ -21,6 +21,7 @@ class App extends Component {
     this.dismiss = this.dismiss.bind(this);
     this.themeSwitch = this.themeSwitch.bind(this);
     this.aboutSwitch = this.aboutSwitch.bind(this);
+    this.checkAbout = this.checkAbout.bind(this);
     this.menuItems =[
       'fullscreen',
       'split-h',
@@ -34,16 +35,19 @@ class App extends Component {
 }
 
   fullscreen(event) {
+    this.checkAbout();
     this.updateActiveMenuItem(event);
     this.props.fullscreen();
   }
 
   splitHeight(event) {
+    this.checkAbout();
     this.updateActiveMenuItem(event);
     this.props.splitHeight(event);
   }
 
   splitVertical(event) {
+    this.checkAbout();
     this.updateActiveMenuItem(event);
     this.props.splitVertical();
   }
@@ -99,6 +103,17 @@ class App extends Component {
 
     }
     this.props.aboutSwitch();
+  }
+
+  checkAbout() {
+    let element = document.getElementById(this.menuItems[3]);
+    let displayWrapper = document.getElementById("display-wrapper");
+
+    if(element.className === 'active') {
+      element.className = '';
+      displayWrapper.classList.remove('no-show');
+      this.props.aboutSwitch();
+    }
   }
   
   render() {

@@ -22,11 +22,7 @@ function updateDisplay(state = initialState, action) {
             wrapper: ""
           })
         case SPLIT_HEIGHT:
-          let element = action.payload;
-          console.log("Element:");
-          console.log(element);
           return Object.assign({}, state, {
-            // display: "split-height"
             display: "split-height",
             wrapper: "split-vertical-wrapper"
           })
@@ -67,7 +63,7 @@ function updateDisplay(state = initialState, action) {
               dismissable: true
             });
           }
-          case ABOUT_SWITCH:
+        case ABOUT_SWITCH:
           if (state.about === "no-show"){
             return Object.assign({}, state, {
               about: "show",
