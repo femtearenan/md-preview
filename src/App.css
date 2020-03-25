@@ -294,7 +294,6 @@ textarea {
 }
 
 .modernize header a, .modernize header p {
-  /* background-color: #863a00; */
   width: 10rem;
   border-radius: 7px;
   background: #db4300;
@@ -314,4 +313,107 @@ textarea {
   margin: 5px;
   border-radius: 5px;
   background-color: #303030;
+}
+
+
+/******************************************
+                MEDIA QUERIES
+*******************************************/
+@media (max-width: 1080px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 970px) {
+  .lg-screens {
+    display: none;
+  }
+
+  header {
+    grid-template-columns: 10rem 1fr 1fr 1fr;
+  }
+
+  #menu-editor {
+    order: 1;
+  }
+
+  #menu-preview {
+    order: 4;
+  }
+
+  #menu-copy {
+    order: 2;
+  }
+
+  #menu-download {
+    order: 5;
+  }
+
+  #menu-theme {
+    order: 3;
+  }
+
+  #menu-github {
+    order: 6;
+  }
+
+  #menu-about {
+    order: 7;
+  }
+
+  #message {
+    grid-area:3/1/4/4;
+  }
+}
+
+@media (max-width: 630px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 540px) {
+  header {
+    grid-template-columns: 10rem 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  #message {
+    grid-area:4/1/5/4;
+  }
+
+  #menu-editor {
+    order: 1;
+  }
+
+  #menu-preview {
+    order: 2;
+  }
+
+  #menu-copy {
+    order: 3;
+  }
+
+  #menu-download {
+    order: 4;
+  }
+
+  #menu-theme {
+    order: 5;
+  }
+
+  #menu-github {
+    order: 6;
+  }
+
+  #menu-about {
+    order: 7;
+  }
+}
+
+@media (max-width: 540px) {
+  html {
+    font-size: 10px;
+  }
 }

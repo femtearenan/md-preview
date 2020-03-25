@@ -133,16 +133,16 @@ class App extends Component {
             </g>
           </svg>
           </div>
-          <div><p id={this.menuItems[0]} onClick={this.fullscreen}>Fullscreen</p></div>
-          <div><p id={this.menuItems[1]} onClick={this.splitHeight}>Split H</p></div>
-          <div><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
-          <div><p onClick={this.copy}>Copy md</p></div>
-          <div><p onClick={this.downloadMd}>Download md</p></div>
-          <div><a href="#editorAnchor">Editor</a></div>
-          <div><a href="#previewAnchor">Preview</a></div>
-          <div><p onClick={this.themeSwitch}>{this.props.displayReducer.applyTheme}</p></div>
-          <div><a href="https://github.com/femtearenan/md-preview" target="_blank" rel="noopener noreferrer">Github</a></div>
-          <div><p id={this.menuItems[3]} onClick={this.aboutSwitch}>About</p></div>
+          <div class="lg-screens"><p id={this.menuItems[0]} onClick={this.fullscreen}>Fullscreen</p></div>
+          <div class="lg-screens"><p id={this.menuItems[1]} onClick={this.splitHeight}>Split H</p></div>
+          <div class="lg-screens"><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
+          <div id="menu-copy"><p onClick={this.copy}>Copy md</p></div>
+          <div id="menu-download"><p onClick={this.downloadMd}>Download md</p></div>
+          <div id="menu-editor"><a href="#editorAnchor">Editor</a></div>
+          <div id="menu-preview"><a href="#previewAnchor">Preview</a></div>
+          <div id="menu-theme"><p onClick={this.themeSwitch}>{this.props.displayReducer.applyTheme}</p></div>
+          <div id="menu-github"><a href="https://github.com/femtearenan/md-preview" target="_blank" rel="noopener noreferrer">Github</a></div>
+          <div id="menu-about"><p id={this.menuItems[3]} onClick={this.aboutSwitch}>About</p></div>
           <div id="message" onClick={this.dismiss}><p>{this.props.displayReducer.message}</p></div>
         </header>
         <div id="about" className={this.props.displayReducer.about}>
