@@ -11,14 +11,14 @@ class Preview extends React.Component {
     }
 
     interpretMarkdown() {
-        let output = DOMPurify.sanitize(marked(this.props.basicReducer.input));
+        let output = DOMPurify.sanitize(marked(this.props.basicReducer.input, {breaks: true, gfm: true}));
         return { __html: output };
     }
 
     render() {
         
         return (
-            <div id="content" dangerouslySetInnerHTML={this.interpretMarkdown()} />
+            <div id="preview" dangerouslySetInnerHTML={this.interpretMarkdown()} />
         );
     }
 }

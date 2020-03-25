@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   copy() {
-    let element = document.getElementById("textarea");
+    let element = document.getElementById("editor");
     element.select();
     element.setSelectionRange(0, 99999);
     document.execCommand("copy");
@@ -151,13 +151,13 @@ class App extends Component {
           <p>The creator of MDLE is me, Anders Björkland. You can read more about me and my projects over at <a href="https://anders.femtearenan.se" target="_blank" rel="noopener noreferrer">anders.femtearenan.se</a> or <a href="https://twitter.com/abjorkland" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.</p>
         </div>
         <div id="display-wrapper" className={this.props.displayReducer.wrapper}>
-          <section id="editor" className={this.props.displayReducer.display} onClick={this.toggleDisplay}>
+          <section id="editor-section" className={this.props.displayReducer.display} onClick={this.toggleDisplay}>
             <div className="anchor" id="editorAnchor"></div>
             <Intro />
             <Presentation />
             <Editor />
           </section>
-          <section id="preview" className={this.props.displayReducer.display}>
+          <section id="preview-section" className={this.props.displayReducer.display}>
             <div className="anchor" id="previewAnchor"></div>
             <Preview/>
           </section>

@@ -18,7 +18,7 @@ class Editor extends React.Component {
     render() {
         return (
             <div id="editable" className={this.props.basicReducer.classEdit}> 
-                <textarea id="textarea" defaultValue={this.props.basicReducer.input} onKeyUp={this.updateInput}></textarea>
+                <textarea id="editor" defaultValue={this.props.basicReducer.input} onKeyUp={this.updateInput}></textarea>
             </div>
         );
     }
