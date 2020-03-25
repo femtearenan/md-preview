@@ -99,17 +99,17 @@ header a, header p {
   width: 100%;
   margin: 0.5rem 0.2rem 0.4rem 0.2rem;
   padding: 0rem 0rem 0.2rem 0rem;
-  background: #db4300;  
+  background: #db4300;
   text-align: center;
   font-size: 1.5rem;
 }
 
-header a:hover, header p:hover, header p.active:hover {
+header a:hover, header p:hover, header p.active:hover, .modernize header a:hover, .modernize header p:hover, .modernize header p.active:hover {
   background-color: white;
   color: var(--rust-color);
 }
 
-header p.active {
+header p.active, .modernize header p.active {
   background-color: #ddd;
   color: var(--rust-color);
 }
@@ -281,25 +281,25 @@ textarea {
 }
 
 .modernize header {
-  background-color: #162c6d;
+  background-color: #db4300;
   margin: 0;
 }
 
 .modernize #message p {
   width: 100%;
   border-radius: 7px;
-  background: #162c6d;
-  box-shadow: inset 5px 5px 9px #122458, 
-              inset -5px -5px 9px #1a3482;
+  background: #db4300;
+  box-shadow: inset 5px 5px 9px #ba3900,
+              inset -5px -5px 9px #fc4d00;
 }
 
 .modernize header a, .modernize header p {
   /* background-color: #863a00; */
   width: 10rem;
   border-radius: 7px;
-  background: #162c6d;
-  box-shadow:  5px 5px 9px #122458, 
-              -5px -5px 9px #1a3482;
+  background: #db4300;
+  box-shadow:  5px 5px 9px #ba3900,
+              -5px -5px 9px #fc4d00;
 }
 
 .modernize .App, .modernize :hover {
@@ -308,4 +308,10 @@ textarea {
 
 .modernize header p:hover, .modernize header a:hover {
   cursor: default;
+}
+
+.modernize #header-title {
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #303030;
 }
