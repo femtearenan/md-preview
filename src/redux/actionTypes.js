@@ -8,3 +8,5 @@ export const DOWNLOAD ="DOWNLOAD";
 export const DISMISS ="DISMISS";
 export const THEME_SWITCH ="THEME_SWITCH";
 export const ABOUT_SWITCH ="ABOUT_SWITCH";
+export const SHOW_EDITOR ="SHOW_EDITOR";
+export const SHOW_PREVIEW ="SHOW_PREVIEW";

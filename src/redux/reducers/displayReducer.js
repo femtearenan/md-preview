@@ -1,7 +1,7 @@
-import { SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, DISMISS, COPY, DOWNLOAD, THEME_SWITCH, ABOUT_SWITCH } from '../actionTypes';
+import { SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, DISMISS, COPY, DOWNLOAD, THEME_SWITCH, ABOUT_SWITCH, SHOW_EDITOR, SHOW_PREVIEW } from '../actionTypes';
 import { dismiss } from '../actions';
 
-const VERSION = "Version 1";
+const VERSION = "Version 1.1";
 
 const initialState = {
     applyTheme: "Modernize",
@@ -11,7 +11,9 @@ const initialState = {
     message: VERSION,
     dialog: "show",
     dismissable: false,
-    about: "no-show"
+    about: "no-show",
+    editor: "show",
+    preview: "no-show"
 };
 
 function updateDisplay(state = initialState, action) {
@@ -19,17 +21,23 @@ function updateDisplay(state = initialState, action) {
         case FULLSCREEN:
           return Object.assign({}, state, {
             display: "normal-height",
-            wrapper: ""
+            wrapper: "",
+            editor: "show",
+            preview: "no-show"
           })
         case SPLIT_HEIGHT:
           return Object.assign({}, state, {
             display: "split-height",
-            wrapper: "split-vertical-wrapper"
+            wrapper: "split-vertical-wrapper",
+            editor: "show",
+            preview: "show"
           })
         case SPLIT_VERTICAL:
           return Object.assign({}, state, {
             display: "normal-height",
-            wrapper: "split-screen"
+            wrapper: "split-screen",
+            editor: "show",
+            preview: "show"
           })
         case COPY:
           return Object.assign({}, state, {
@@ -74,6 +82,30 @@ function updateDisplay(state = initialState, action) {
               about: "no-show",
               dismissable: true
             });
+          }
+        case SHOW_EDITOR:
+          if (state.display === "normal-height"){
+            return Object.assign({}, state, {
+              editor: "show",
+              preview: "no-show"
+            })
+          } else {
+            return Object.assign({}, state, {
+              editor: "show",
+              preview: "show"
+            })
+          }
+        case SHOW_PREVIEW:
+          if (state.display === "normal-height"){
+            return Object.assign({}, state, {
+              editor: "no-show",
+              preview: "show"
+            })
+          } else {
+            return Object.assign({}, state, {
+              editor: "show",
+              preview: "show"
+            })
           }
         default:
           return state;

@@ -1,4 +1,4 @@
-import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, COPY, DISMISS, DOWNLOAD, THEME_SWITCH, ABOUT_SWITCH } from "./actionTypes";
+import { UPDATE, INITIAL_CLICK, SPLIT_HEIGHT, FULLSCREEN, SPLIT_VERTICAL, COPY, DISMISS, DOWNLOAD, THEME_SWITCH, ABOUT_SWITCH, SHOW_EDITOR, SHOW_PREVIEW } from "./actionTypes";
 
 export const updateMd = event => {
     let content = event.target.value;
@@ -47,4 +47,12 @@ export const themeSwitch = () => ({
 
 export const aboutSwitch = () => ({
     type: ABOUT_SWITCH
+})
+
+export const showEditor = () => ({
+    type: SHOW_EDITOR
+})
+
+export const showPreview = () => ({
+    type: SHOW_PREVIEW
 })

@@ -5,7 +5,7 @@ import Presentation from './components/Presentation';
 import Preview from './components/Preview';
 import './App.css';
 
-import { initialAction, fullscreen, splitHeight, splitVertical, copy, download, dismiss, themeSwitch, aboutSwitch } from './redux/actions';
+import { initialAction, fullscreen, splitHeight, splitVertical, copy, download, dismiss, themeSwitch, aboutSwitch, showEditor, showPreview } from './redux/actions';
 
 import { connect } from 'react-redux';
 
@@ -138,8 +138,8 @@ class App extends Component {
           <div class="lg-screens"><p id={this.menuItems[2]} onClick={this.splitVertical}>Split V</p></div>
           <div id="menu-copy"><p onClick={this.copy}>Copy md</p></div>
           <div id="menu-download"><p onClick={this.downloadMd}>Download md</p></div>
-          <div id="menu-editor"><a href="#editorAnchor">Editor</a></div>
-          <div id="menu-preview"><a href="#previewAnchor">Preview</a></div>
+          <div id="menu-editor"><p onClick={this.props.showEditor}>Editor</p></div>
+          <div id="menu-preview"><p onClick={this.props.showPreview}>Preview</p></div>
           <div id="menu-theme"><p onClick={this.themeSwitch}>{this.props.displayReducer.applyTheme}</p></div>
           <div id="menu-github"><a href="https://github.com/femtearenan/md-preview" target="_blank" rel="noopener noreferrer">Github</a></div>
           <div id="menu-about"><p id={this.menuItems[3]} onClick={this.aboutSwitch}>About</p></div>
@@ -151,13 +151,13 @@ class App extends Component {
           <p>The creator of MDLE is me, Anders Björkland. You can read more about me and my projects over at <a href="https://anders.femtearenan.se" target="_blank" rel="noopener noreferrer">anders.femtearenan.se</a> or <a href="https://twitter.com/abjorkland" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.</p>
         </div>
         <div id="display-wrapper" className={this.props.displayReducer.wrapper}>
-          <section id="editor-section" className={this.props.displayReducer.display} onClick={this.toggleDisplay}>
+          <section id="editor-section" className={this.props.displayReducer.display + " " + this.props.displayReducer.editor} onClick={this.toggleDisplay}>
             <div className="anchor" id="editorAnchor"></div>
             <Intro />
             <Presentation />
             <Editor />
           </section>
-          <section id="preview-section" className={this.props.displayReducer.display}>
+          <section id="preview-section" className={this.props.displayReducer.display + " " + this.props.displayReducer.preview}>
             <div className="anchor" id="previewAnchor"></div>
             <Preview/>
           </section>
@@ -200,7 +200,9 @@ const mapDispatchToProps = dispatch => ({
   download: () => dispatch(download()),
   dismiss: () => dispatch(dismiss()),
   themeSwitch: () => dispatch(themeSwitch()),
-  aboutSwitch: () => dispatch(aboutSwitch())
+  aboutSwitch: () => dispatch(aboutSwitch()),
+  showEditor: () => dispatch(showEditor()),
+  showPreview: () => dispatch(showPreview())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
